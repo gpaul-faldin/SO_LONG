@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 20:13:08 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/13 04:45:14 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/13 07:56:17 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-//# include "../gnl/get_next_line.h"
 # include <math.h>
 # include <fcntl.h>
 
@@ -80,6 +79,24 @@ typedef struct s_coo
 	int		exi;
 }				t_coo;
 
+typedef struct s_key
+{
+	int		W;
+	int		A;
+	int		S;
+	int		D;
+	int		ESC;
+	int		nbr_press;
+}				t_key;
+
+typedef struct s_every
+{
+	t_map		*map;
+	t_texture	*texture;
+	t_mlx		*mlx;
+	t_key		*key;
+}				t_every;
+
 /*
 	GNL
 */
@@ -88,7 +105,6 @@ typedef struct s_coo
 int		next_nl(char *str);
 char	*ft_strdup_free(char **s1, int i, int size);
 char	*ft_strjoin_free(char **s1, char *s2);
-int		get_next_line(int fd, char **line);
 
 /*
 	INIT MAP
@@ -119,5 +135,13 @@ void	ft_error(char *str);
 */
 void	texture_init(t_texture *texture, t_mlx *mlx);
 void	initial_render(t_texture *texture, t_map *map, t_mlx *mlx);
+int		ft_update(t_every *info);
+void	update_render_init(t_texture *texture, t_map *map, t_mlx *mlx);
+
+/*
+	KEY/MOVE
+*/
+int		key_press(int keycode, t_key *key);
+int		mlx_terminate(int keycode, t_key *key);
 
 #endif

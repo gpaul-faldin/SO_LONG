@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/06 20:00:48 by gpaul             #+#    #+#              #
-#    Updated: 2021/08/13 04:37:09 by gpaul            ###   ########.fr        #
+#    Updated: 2021/08/13 06:40:36 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,15 @@ SRCS =	main.c		\
 		error.c		\
 		text_init.c	\
 		initial_render.c	\
+		key_press.c			\
+		move_rend.c			\
+		update_rend.c
 
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 DPDCS = $(OBJS:.o=.d)
 INCLUDES = -I includes/ -I libft/ -I mlx/
 LIB = -Llibft -lft
-CFLAGS = -Wall -Wextra  -flto -O2 -march=native
+CFLAGS = -Wall -Wextra -Werror -flto -O2 -march=native
 MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all : $(NAME)
