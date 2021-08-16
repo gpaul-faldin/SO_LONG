@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/06 20:00:48 by gpaul             #+#    #+#              #
-#    Updated: 2021/08/13 06:40:36 by gpaul            ###   ########.fr        #
+#    Updated: 2021/08/16 03:24:22 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,10 @@ NAME = so_long
 SRCSDIR = srcs
 OBJSDIR = .objs
 SRCS =	main.c		\
-		get_next_line_utils.c	\
-		get_next_line.c			\
 		utils.c		\
 		copy_map.c	\
 		map_init.c	\
 		check_map.c	\
-		error.c		\
 		text_init.c	\
 		initial_render.c	\
 		key_press.c			\

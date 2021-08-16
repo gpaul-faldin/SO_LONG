@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 04:36:59 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/13 07:36:01 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/16 03:01:22 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	check_exist_extension(char *name)
 		i++;
 	if (name[i] == '\0')
 	{
-		ft_putstr_fd("Error\nThe file extension is not .ber\n", 2);
+		ft_error("Error\nThe file extension is not .ber\n");
 		exit(EXIT_FAILURE);
 	}
 	if (ft_strstr_ret_int(name, ".ber") == 1)
@@ -30,13 +30,13 @@ static int	check_exist_extension(char *name)
 		fd = open(name, O_RDONLY);
 		if (fd == -1)
 		{
-			ft_putstr_fd("Error\nWrong map path or the map doesn't exist\n", 2);
+			ft_error("Error\nWrong map path or the map doesn't exist\n");
 			exit(EXIT_FAILURE);
 		}
 		close(fd);
 		return (1);
 	}
-	ft_putstr_fd("Error\nThe file extension is not .ber\n", 2);
+	ft_error("Error\nThe file extension is not .ber\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -58,13 +58,8 @@ static int	map_size(t_map *map)
 	return (1);
 }
 
-t_map	*map_init(char **argv)
+t_map	*map_init(char **argv, t_map *map)
 {
-	t_map	*map;
-
-	map = malloc(sizeof(t_map) * 1);
-	if (map == NULL)
-		return (NULL);
 	map->lenght = 0;
 	map->width = 0;
 	map->collec = 0;
@@ -76,5 +71,7 @@ t_map	*map_init(char **argv)
 	check_map(map);
 	map->collec_pos = malloc(sizeof(t_posi) * map->collec);
 	map->exit_pos = malloc(sizeof(t_posi) * map->exit);
+	if (map->collec_pos == NULL || map->exit_pos == NULL)
+		ft_error("Error\nError while allocating memory");
 	return (map);
 }

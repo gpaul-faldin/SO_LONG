@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 06:37:26 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/13 06:39:12 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/16 02:51:10 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	update_render_init(t_texture *texture, t_map *map, t_mlx *mlx)
 
 	coo = malloc(sizeof(t_coo) * 1);
 	if (coo == NULL)
-		ft_error("error while assigning memory");
+		ft_error("Error\nError while allocating memory");
 	coo->i = 0;
 	coo->n = 0;
 	coo->X = 0;

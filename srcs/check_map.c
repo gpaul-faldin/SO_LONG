@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:02:04 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/13 04:42:48 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/16 03:21:44 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@ int	check_letters(t_map *map, int cpy_width, int i)
 {
 	if ((cpy_width == map->width - 1 || cpy_width == 0)
 		&& map->map[cpy_width][i] != '1')
-		return (error_in_parse(map));
+		ft_error("Error\nYour map is missing a \'1\'\n");
 	else if ((i == 0 || i == map->lenght - 1)
 		&& map->map[cpy_width][i] != '1')
-		return (error_in_parse(map));
+		ft_error("Error\nYour map is missing a \'1\'\n");
 	else if (map->map[cpy_width][i] == 'C')
 		map->collec++;
 	else if (map->map[cpy_width][i] == 'E')
 		map->exit++;
 	else if (map->map[cpy_width][i] == 'P')
-		map->player.status++;
+	{
+		if (map->player.status == 1)
+			map->map[cpy_width][i] = '0';
+		else
+			map->player.status++;
+	}
 	else if (map->map[cpy_width][i] == '0' || map->map[cpy_width][i] == '1')
 		return (0);
 	else
@@ -39,7 +44,7 @@ int	check_map(t_map *map)
 	int	i;
 
 	if (map->width == map->lenght)
-		return (error_in_parse(map));
+		ft_error("Error\nYour map is not a rectangle\n");
 	cpy_width = map->width - 1;
 	while (cpy_width != -1)
 	{
@@ -47,7 +52,7 @@ int	check_map(t_map *map)
 		while (map->map[cpy_width][i])
 		{
 			if (check_letters(map, cpy_width, i) == -1)
-				return (error_in_parse(map));
+				ft_error("Error\nYour map countain an unknown letter invalid\n");
 			i++;
 		}
 		cpy_width--;
@@ -55,5 +60,6 @@ int	check_map(t_map *map)
 	if (map->collec != 0 && map->exit != 0 && map->player.status != 0)
 		return (1);
 	else
-		return (error_in_parse(map));
+		ft_error("Error\nYour map is missing \n");
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 20:13:08 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/13 07:56:17 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/16 03:26:23 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-# include <math.h>
 # include <fcntl.h>
-
 # include <stdio.h>
 
 typedef struct s_img
@@ -98,18 +96,9 @@ typedef struct s_every
 }				t_every;
 
 /*
-	GNL
-*/
-# define BUFFER_SIZE 5000
-
-int		next_nl(char *str);
-char	*ft_strdup_free(char **s1, int i, int size);
-char	*ft_strjoin_free(char **s1, char *s2);
-
-/*
 	INIT MAP
 */
-t_map	*map_init(char **argv);
+t_map	*map_init(char **argv, t_map *map);
 
 /*
 	UTILS
@@ -121,8 +110,6 @@ int		ft_strstr_ret_int(char *str, char *to_find);
 */
 int		copy_split(char *path, t_map *map);
 int		check_map(t_map *map);
-char	*copy(char *res, char *map_file);
-int		nb_char_file(char *map_file);
 
 /*
 	ERROR
