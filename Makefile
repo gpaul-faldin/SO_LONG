@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/06 20:00:48 by gpaul             #+#    #+#              #
-#    Updated: 2021/08/16 03:24:22 by gpaul            ###   ########.fr        #
+#    Updated: 2021/08/18 21:24:03 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS =	main.c		\
 		initial_render.c	\
 		key_press.c			\
 		move_rend.c			\
-		update_rend.c
+		update_rend.c		\
+		free_alloc.c
 
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 DPDCS = $(OBJS:.o=.d)

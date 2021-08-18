@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 03:16:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/16 02:46:09 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/18 21:12:02 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ static void	put_initial_render(t_texture *texture, t_map *map, t_mlx *mlx,
 	}
 }
 
-void	initial_render(t_texture *texture, t_map *map, t_mlx *mlx)
+void	initial_render(t_texture *texture, t_map *map, t_mlx *mlx,
+	t_every *info)
 {
 	t_coo	*coo;
 
 	coo = malloc(sizeof(t_coo) * 1);
 	if (coo == NULL)
-		ft_error("Error\nError while allocating memory");
+		free_mem(info, "Error\nError while allocating memory\n", 3);
 	coo->i = 0;
 	coo->n = 0;
 	coo->X = 0;

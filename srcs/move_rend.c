@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 05:40:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/13 07:56:53 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/18 21:21:58 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ft_check_event(t_every *info, int X, int Y, char **map)
 				return (1);
 			i++;
 		}
-		exit(EXIT_SUCCESS);
+		free_mem(info, "win", 4);
 	}
 	return (0);
 }
@@ -96,6 +96,6 @@ static void	ft_move_init(t_every *info, int X_p, int Y_p)
 int	ft_update(t_every *info)
 {
 	ft_move_init(info, info->map->player.X, info->map->player.Y);
-	update_render_init(info->texture, info->map, info->mlx);
+	update_render_init(info->texture, info->map, info->mlx, info);
 	return (0);
 }

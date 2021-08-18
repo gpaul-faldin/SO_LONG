@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 04:21:13 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/16 03:21:58 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/18 20:05:20 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,17 @@ static int	*copy(char *res, char *map_file)
 	return (0);
 }
 
-int	copy_split(char *path, t_map *map)
+int	copy_split(char *path, t_map *map, t_every *info)
 {
 	map->map_string = malloc(sizeof(char) * nb_char_file(path));
 	if (map->map_string == NULL)
-		ft_error("Error\nError while allocating memory");
+		free_mem(info, "Error\nError while allocating memory", 0);
 	copy(map->map_string, path);
 	map->map = ft_split(map->map_string, '\n');
 	if (map->map == NULL)
-		ft_error("Error\nError while allocating memory");
+	{
+		free(map->map_string);
+		free_mem(info, "Error\nError while allocating memory", 0);
+	}
 	return (1);
 }

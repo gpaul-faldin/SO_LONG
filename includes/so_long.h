@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 20:13:08 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/16 03:26:23 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/18 21:19:23 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_every
 /*
 	INIT MAP
 */
-t_map	*map_init(char **argv, t_map *map);
+t_map	*map_init(char **argv, t_map *map, t_every *info);
 
 /*
 	UTILS
@@ -108,27 +108,30 @@ int		ft_strstr_ret_int(char *str, char *to_find);
 /*
 	MAP PARSE
 */
-int		copy_split(char *path, t_map *map);
-int		check_map(t_map *map);
+int		copy_split(char *path, t_map *map, t_every *info);
+int		check_map(t_map *map, t_every *info);
 
 /*
 	ERROR
 */
 int		error_in_parse(t_map *map);
 void	ft_error(char *str);
+void	free_mem(t_every *info, char *str, int stage);
 
 /*
 	TEXTURE
 */
-void	texture_init(t_texture *texture, t_mlx *mlx);
-void	initial_render(t_texture *texture, t_map *map, t_mlx *mlx);
+void	texture_init(t_texture *texture, t_mlx *mlx, t_every *info);
+void	initial_render(t_texture *texture, t_map *map, t_mlx *mlx,
+			t_every *info);
 int		ft_update(t_every *info);
-void	update_render_init(t_texture *texture, t_map *map, t_mlx *mlx);
+void	update_render_init(t_texture *texture, t_map *map, t_mlx *mlx,
+			t_every *info);
 
 /*
 	KEY/MOVE
 */
 int		key_press(int keycode, t_key *key);
-int		mlx_terminate(int keycode, t_key *key);
+int		mlx_terminate(int keycode, t_every *info);
 
 #endif

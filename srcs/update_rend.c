@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 06:37:26 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/16 02:51:10 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/18 21:19:52 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ static void	update_render(t_texture *texture, t_map *map, t_mlx *mlx,
 			texture->bear.ptr, coo->X, coo->Y);
 }
 
-void	update_render_init(t_texture *texture, t_map *map, t_mlx *mlx)
+void	update_render_init(t_texture *texture, t_map *map, t_mlx *mlx,
+	t_every *info)
 {
 	t_coo	*coo;
 
 	coo = malloc(sizeof(t_coo) * 1);
 	if (coo == NULL)
-		ft_error("Error\nError while allocating memory");
+		free_mem(info, "Error\nError while allocating memory\n", 3);
 	coo->i = 0;
 	coo->n = 0;
 	coo->X = 0;

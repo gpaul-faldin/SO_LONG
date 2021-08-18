@@ -1,1 +1,7 @@
 .objs
+libft/*.o
+libft/*.a
+mlx/*.o
+mlx/*.a
+so_long
+*.ber
