@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2021/08/19 05:21:28 by gpaul            ###   ########.fr        #
+#    Updated: 2021/08/19 05:22:50 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ all: 		${NAME}
 .c.o:
 			${CC} ${CFLAGS} -Imlx -Ibass -c $< -o ${<:.c=.o}
 
-$(NAME): 	$(OBJS) ${OBJS_M}
+$(NAME): 	$(LIB) $(OBJS) ${OBJS_M}
 			make -C $(PATH_MLX)
 			${CC} $(CFLAGS) -o $(NAME) $(OBJS) $(LIB) $(INCLUDES) -o ${OBJS_M} $(FLAGS)
 $(LIB) :
