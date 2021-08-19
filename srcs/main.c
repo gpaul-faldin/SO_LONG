@@ -14,7 +14,7 @@
 
 void	ft_error(char *str)
 {
-	write(1, "[so_long] ", 10);
+	printf("[so_long] ");
 	ft_putstr_fd(str, 1);
 	exit(EXIT_FAILURE);
 }
