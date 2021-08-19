@@ -6,16 +6,15 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 05:09:46 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/18 21:18:27 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/19 22:36:03 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	mlx_terminate(int keycode, t_every *info)
+int	mlx_terminate(t_every *info)
 {
-	(void)keycode;
-	free_mem(info, "esc", 4);
+	free_mem(info, "", 4);
 	return (0);
 }
 

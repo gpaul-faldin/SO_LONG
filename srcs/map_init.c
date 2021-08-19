@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 04:36:59 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/18 20:15:35 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/19 22:52:48 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	check_exist_extension(char *name, t_every *info)
 {
-	int	i;
-	int	fd;
+	int		i;
+	int		fd;
+	char	buf;
 
 	i = 0;
 	while (name[i] && name[i] != '.')
@@ -27,6 +28,8 @@ static int	check_exist_extension(char *name, t_every *info)
 		fd = open(name, O_RDONLY);
 		if (fd == -1)
 			free_mem(info, "Error\nWrong map path or the map doesn't exist\n", 0);
+		if (read(fd, &buf, 1) == -1)
+			free_mem(info, "Error\nThe map is a directory\n", 0);
 		close(fd);
 		return (1);
 	}

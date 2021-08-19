@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:02:04 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/18 20:14:13 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/19 21:20:23 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	check_map(t_map *map, t_every *info)
 	int	cpy_width;
 	int	i;
 
-	if (map->width == map->lenght)
-		free_mem(info, "Error\nYour map is not a rectangle\n", 1);
 	cpy_width = map->width - 1;
 	while (cpy_width != -1)
 	{

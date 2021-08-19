@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/06 20:00:48 by gpaul             #+#    #+#              #
-#    Updated: 2021/08/18 21:24:03 by gpaul            ###   ########.fr        #
+#    Updated: 2021/08/19 22:16:20 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 DPDCS = $(OBJS:.o=.d)
 INCLUDES = -I includes/ -I libft/ -I mlx/
 LIB = -Llibft -lft
-CFLAGS = -Wall -Wextra -Werror -flto -O2 -march=native
+CFLAGS = -Wall -Wextra -Werror -flto -O2 -g -march=native -fsanitize=address 
 MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all : $(NAME)
