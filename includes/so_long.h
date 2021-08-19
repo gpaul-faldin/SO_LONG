@@ -6,18 +6,17 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 20:13:08 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/19 20:35:14 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/18 21:19:23 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
 
 typedef struct s_img
 {
@@ -105,8 +104,6 @@ t_map	*map_init(char **argv, t_map *map, t_every *info);
 	UTILS
 */
 int		ft_strstr_ret_int(char *str, char *to_find);
-void	ft_putstr_fd(char *s, int fd);
-char	**ft_split(char const *s, char c);
 
 /*
 	MAP PARSE

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 04:21:13 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/18 20:05:20 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/19 21:08:20 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	nb_char_file(char *map_file)
 	if (fd == -1)
 		return (-1);
 	while ((read(fd, &buf, 1)))
-		i++;	
+		i++;
 	close(fd);
 	return (i);
 }
