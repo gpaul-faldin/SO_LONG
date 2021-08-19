@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2021/08/19 05:14:12 by gpaul            ###   ########.fr        #
+#    Updated: 2021/08/19 05:21:28 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,9 @@ OBJS_M		= ${SRCS_MANDATORY:.c=.o}
 
 UNAME		:= $(shell uname)
 
+
+INCLUDES = -I includes/ -I libft/
+LIB = -Llibft -lft
 PATH_MLX	= mlx
 CC 			= gcc -g -fsanitize=address
 CFLAGS		= -Wall -Wextra -Werror
@@ -45,7 +48,9 @@ all: 		${NAME}
 
 $(NAME): 	$(OBJS) ${OBJS_M}
 			make -C $(PATH_MLX)
-			${CC} $(CFLAGS) -o $(NAME) $(OBJS) ${OBJS_M} $(FLAGS)
+			${CC} $(CFLAGS) -o $(NAME) $(OBJS) $(LIB) $(INCLUDES) -o ${OBJS_M} $(FLAGS)
+$(LIB) :
+	@(make -C libft)
 
 bonus:		${OBJS} ${OBJS_B}
 			make -C $(PATH_MLX)
