@@ -53,6 +53,12 @@ int	main(int argc, char **argv)
 		texture_init(info->texture, info->mlx, info);
 		initial_render(info->texture, info->map, info->mlx, info);
 		info->key->nbr_press = 0;
+
+
+
+		printf("%s\n", info->map->map_string);
+
+
 		mlx_do_key_autorepeatoff(info->mlx->mlx);
 		mlx_hook(info->mlx->mlx_win, 2, 1L << 0, key_press, info->key);
 		mlx_hook(info->mlx->mlx_win, 17, 1L << 17, mlx_terminate, info);

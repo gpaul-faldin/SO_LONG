@@ -6,57 +6,53 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/06 20:00:48 by gpaul             #+#    #+#              #
-#    Updated: 2021/08/19 20:35:43 by gpaul            ###   ########.fr        #
+#    Updated: 2021/08/19 05:39:53 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
-SRCSDIR = srcs
-OBJSDIR = .objs
-SRCS =	main.c		\
-		utils.c		\
-		ft_split.c		\
-		ft_putstr_fd.c	\
-		copy_map.c	\
-		map_init.c	\
-		check_map.c	\
-		text_init.c	\
-		initial_render.c	\
-		key_press.c			\
-		move_rend.c			\
-		update_rend.c		\
-		free_alloc.c
+SRCS =	./srcs/utils.c			\
+		./srcs/ft_split.c		\
+		./srcs/ft_putstr_fd.c	\
+		./srcs/copy_map.c	\
+		./srcs/map_init.c	\
+		./srcs/check_map.c	\
+		./srcs/text_init.c	\
+		./srcs/initial_render.c	\
+		./srcs/key_press.c			\
+		./srcs/move_rend.c			\
+		./srcs/update_rend.c		\
+		./srcs/free_alloc.c
 
-OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
-DPDCS = $(OBJS:.o=.d)
-INCLUDES = -I includes/ -I mlx/
-CFLAGS = -Wall -Wextra -Werror -flto -O2 -march=native
-MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+SRCS_MANDATORY = ./srcs/main.c \
 
-all : $(NAME)
+OBJS 		= ${SRCS:.c=.o}
+OBJS_M		= ${SRCS_MANDATORY:.c=.o}
 
--include $(DPDCS)
+UNAME		:= $(shell uname)
 
-$(NAME) : $(LIB) $(OBJS) 
-	@(gcc $(MLX) $(CFLAGS) $(OBJS) $(INCLUDES) -o $(NAME))
+PATH_MLX	= mlx
+CC 			= gcc -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
+RM			= rm -f
+NAME		= so_long
+FLAGS		= -ldl -Imlx -Lmlx -lmlx -lm -lbsd -lXext -lX11 -Wl,-rpath=./bass/,-rpath=./mlx/
 
-$(LIB) :
-	$(MAKE) -C mlx
+all: 		${NAME}
 
-$(OBJSDIR)/%.o : $(SRCSDIR)/%.c | $(OBJSDIR)
-	@(echo "Compiling -> $^")
-	@(gcc $(CFLAGS) $(INCLUDES) -MMD -c $< -o $@)
+.c.o:
+			${CC} ${CFLAGS} -Imlx -Ibass -c $< -o ${<:.c=.o}
 
-$(OBJSDIR) :
-	@(mkdir -p .objs)
+$(NAME): 	$(OBJS) ${OBJS_M}
+			make -C $(PATH_MLX)
+			${CC} $(CFLAGS) -o $(NAME) $(OBJS) ${OBJS_M} $(FLAGS)
+clean:
+			make -C $(PATH_MLX) clean
+			${RM} ${OBJS} ${OBJS_M} ${OBJS_B}
 
-clean :
-	@(rm -f $(NAME))
-	$(MAKE) clean -C mlx
+fclean: 	clean
+			make -C $(PATH_MLX) clean
+			${RM} ${NAME}
 
-fclean : clean
-	@(rm -rf $(OBJSDIR))
-re : fclean all
+re: 		fclean all
 
-fg : $(LIB) $(OBJS)
-	@(gcc $(MLX) $(CFLAGS) -g3 -fsanitize=address $(OBJS) $(LIB) $(MLX_COMP) $(INCLUDES)  -o $(NAME) )
+.PHONY:		bonus all clean fclean re

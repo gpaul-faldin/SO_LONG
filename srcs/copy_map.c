@@ -23,7 +23,7 @@ static int	nb_char_file(char *map_file)
 	if (fd == -1)
 		return (-1);
 	while ((read(fd, &buf, 1)))
-		i++;
+		i++;	
 	close(fd);
 	return (i);
 }
@@ -50,7 +50,7 @@ static int	*copy(char *res, char *map_file)
 
 int	copy_split(char *path, t_map *map, t_every *info)
 {
-	map->map_string = malloc(sizeof(char) * nb_char_file(path));
+	map->map_string = malloc(sizeof(char) * nb_char_file(path) + 1);
 	if (map->map_string == NULL)
 		free_mem(info, "Error\nError while allocating memory", 0);
 	copy(map->map_string, path);
