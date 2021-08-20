@@ -131,7 +131,7 @@ void	update_render_init(t_texture *texture, t_map *map, t_mlx *mlx,
 /*
 	KEY/MOVE
 */
-int		key_press(int keycode, t_key *key);
+int		key_press(int keycode, t_every *info);
 int		mlx_terminate(t_every *info);
 
 #endif

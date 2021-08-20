@@ -14,7 +14,7 @@
 
 void	ft_error(char *str)
 {
-	write(1, "[so_long] ", 10);
+	printf("[so_long] ");
 	ft_putstr_fd(str, 1);
 	exit(EXIT_FAILURE);
 }
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 		initial_render(info->texture, info->map, info->mlx, info);
 		info->key->nbr_press = 0;
 		mlx_do_key_autorepeatoff(info->mlx->mlx);
-		mlx_hook(info->mlx->mlx_win, 2, 1L << 0, key_press, info->key);
+		mlx_hook(info->mlx->mlx_win, 2, 1L << 0, key_press, info);
 		mlx_hook(info->mlx->mlx_win, 17, 1L << 17, mlx_terminate, info);
 		mlx_loop_hook(info->mlx->mlx, ft_update, info);
 		mlx_loop(info->mlx->mlx);

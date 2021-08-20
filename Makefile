@@ -1,64 +1,57 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/06 20:00:48 by gpaul             #+#    #+#              #
-#    Updated: 2021/08/19 22:16:20 by gpaul            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-NAME = so_long
-SRCSDIR = srcs
-OBJSDIR = .objs
-SRCS =	main.c		\
-		utils.c		\
-		copy_map.c	\
-		map_init.c	\
-		check_map.c	\
-		text_init.c	\
-		initial_render.c	\
-		key_press.c			\
-		move_rend.c			\
-		update_rend.c		\
-		free_alloc.c
+NAME			=	so_long
 
-OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
-DPDCS = $(OBJS:.o=.d)
-INCLUDES = -I includes/ -I libft/ -I mlx/
-LIB = -Llibft -lft
-CFLAGS = -Wall -Wextra -Werror -flto -O2 -g -march=native -fsanitize=address 
-MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+SRCS			=	main.c				\
+					utils.c				\
+					copy_map.c			\
+					map_init.c			\
+					check_map.c			\
+					text_init.c			\
+					initial_render.c	\
+					key_press.c			\
+					move_rend.c			\
+					update_rend.c		\
+					free_alloc.c
 
-all : $(NAME)
+OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 
--include $(DPDCS)
+LD_FLAGS		=	-L libft -L mlx
 
-$(NAME) : $(LIB) $(OBJS) 
-	@(gcc $(MLX) $(CFLAGS) $(OBJS) $(LIB) $(INCLUDES) -o $(NAME))
+MLX_FLAGS		=	-lm -lmlx -lXext -lX11
 
-$(LIB) :
-	@(make -C libft)
-	$(MAKE) -C mlx
+HEAD			=	-I includes -I libft -I mlx
 
-$(OBJSDIR)/%.o : $(SRCSDIR)/%.c | $(OBJSDIR)
-	@(echo "Compiling -> $^")
-	@(gcc $(CFLAGS) $(INCLUDES) -MMD -c $< -o $@)
+CC				=	clang
 
-$(OBJSDIR) :
-	@(mkdir -p .objs)
+CFLAGS			=	-Wall -Werror -Wextra -g #-fsanitize=address
 
-clean :
-	@(rm -f $(NAME))
-	$(MAKE) clean -C libft
-	$(MAKE) clean -C mlx
+.c.o			:
+					${CC} ${CFLAGS} ${HEAD} -c $< -o ${<:.c=.o}
 
-fclean : clean
-	@(rm -rf $(OBJSDIR))
-	$(MAKE) fclean -C libft
-re : fclean all
+$(NAME)			:	${OBJS}
+					make -C libft
+					make -C mlx
+					${CC} ${CFLAGS} ${LD_FLAGS} ${OBJS} -o ${NAME} -lft ${MLX_FLAGS}
 
-fg : $(LIB) $(OBJS)
-	@(gcc $(MLX) $(CFLAGS) -g3 -fsanitize=address $(OBJS) $(LIB) $(MLX_COMP) $(INCLUDES)  -o $(NAME) )
+all				:	${NAME}
+
+val				:	${NAME}
+					valgrind \
+					--leak-check=full --tool=memcheck \
+					--show-reachable=yes \
+					--track-fds=yes \
+					--errors-for-leak-kinds=all \
+					--show-leak-kinds=all ./${NAME}
+
+clean			:
+					make clean -C libft
+					make clean -C mlx
+					@rm -rf ${OBJS} ${OBJS_BONUS}
+
+fclean			:	clean
+					make fclean -C libft
+					@rm -rf ${NAME}
+
+re				:	fclean all
+
+.PHONY			:	all clean fclean re
