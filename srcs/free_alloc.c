@@ -28,7 +28,7 @@ static void	free_map(t_map *map, int stage)
 				free(map->map[i]);
 				i++;
 			}
-			i = 0;
+			free(map->map);
 		}
 		if (stage >= 2)
 		{
