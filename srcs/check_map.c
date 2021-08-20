@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:02:04 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/19 21:20:23 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/20 04:14:46 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_letters(t_map *map, int cpy_width, int i)
 {
-	if ((cpy_width == map->width - 1 || cpy_width == 0)
+	if ((cpy_width == map->width || cpy_width == 0)
 		&& map->map[cpy_width][i] != '1')
 		return (-1);
 	else if ((i == 0 || i == map->lenght - 1)

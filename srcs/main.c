@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 20:22:37 by gpaul             #+#    #+#             */
-/*   Updated: 2021/08/18 21:16:40 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/08/20 03:46:14 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_error(char *str)
 {
-	printf("[so_long] ");
+	write(1, "[so_long] ", 10);
 	ft_putstr_fd(str, 1);
 	exit(EXIT_FAILURE);
 }
