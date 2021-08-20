@@ -17,7 +17,7 @@ OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 
 LD_FLAGS		=	-L libft -L mlx
 
-MLX_FLAGS		=	-lm -lmlx -lXext -lX11
+MLX_FLAGS		=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 HEAD			=	-I includes -I libft -I mlx
 
